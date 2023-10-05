@@ -1,0 +1,111 @@
+172 Appendix IT
+
+NF=1
+DO 111=1,111
+11. BLER()=0.0
+22 — WRITE(LUNO,600) BELL
+600 FORMAT(A4,’ ERROR ANALYSIS DIRECTIONS::’,/,
+1° -USE "01010101"/,
+2' -USE BETA AND COVARYING BETAS’,/,
+3' -USE INCREMENT IN PROPORTION TO SIGFIT SIZE’,/,
+4' =RESULT WILL BE APPEAR IN FILE "ERROR.DAT™)
+SIG1 =SGF
+NREF=0
+CALL REFINE
+SIG2=SGF
+NREF=1
+DLB=-DLB
+CALL REFINE
+NREF=0
+D=SIG2-SIG1
+IF(D.EQ.0) D=.0001
+BETERR=ABS(DLB*SIG1/D)
+WRITE(LUNO,605) KCVERR, BERBET,BETERR
+605 FORMAT('LOGBETA(,|2,') =',F10.4,'(,F10.4,')')
+20 _WRITE(7,605) KCVERR,BERBET,BETERR .
+BLER(KCVERR) = BETERR
+RETURN
+END
+
+C***** Last line (1161) of BEST.FOR
+
+On
+
+Nee at re OY en es ee
+ee re ee
+
+APPENDIX III
+PROGRAM SPE
+
+Program SPE is a FORTRAN computer program for the computation of
+Species distributions from given Stability constants (and, optionally,
+solubility products). The body of the program is extracted from the BEST
+program with the added subroutine PHASE which takes into account
+solubility products. The purpose of the program is two-fold:
+
+1) To create an input file for a plotting program. In particular, the
+plotting program included is SPEPLOT.BAS which uses as its
+input the output file FORO07.DAT from SPE and drives the Hewlett
+Packard LaserJet Series I! or Plus+ and compatibles to make
+charts of % Species vs. p[H].
+
+2) To create an optional FOROO8.DAT output file containing a
+complete listing of each species, its stoichiometry, concentration,
+and relative percentage all as a function of p[H] spaced usually at
+0.1 p[H] unit intervals in a span usually 10 p[{H) units wide. The file
+is optional because it is usually very lengthy. The file FOROO8.dat
+is usually not printed but convenlontly perused within a word
+processor wherein searches and other commands may be given.
+
+When solubility products are not specified, program execution ts
+extremely rapid. The specification of solid phases slows down the
+execution because of the added computational overhoad of checking,
+adding or subtracting matter. With extremely Insoluble spocios, problems,
+if any, arise chiefly from FORTRAN precision.
+
+The program was written and Is intended to be a complementary
+utility to the visualization of solution composition as determined by known
+Stability constants. SPE is particularly useful during work with BEST since
+their input files are virtually identical. All of the illustrations of species
+
+distributions were generated with the help of SPE.FOR and
+
+SPEPLOT.BAS using a Packard Bell 232 PC, and drawn on the HP Series
+ll printer.
+
+FILE USAGE
+Program SPE requires one input file, produces one output file directed at
+plotting, and optionally writes a detailed species information file
+containing concentrations, and relative percentages as a funotlon of
+p[H*}: .
+FORO001.DAT - input file (same as FORO04.DAT In BEST)
+FORO07.DAT - output file (to be used by SPEPLOT)
+FORO08.DAT - output file (for perusal or hard copy)
+
+179
+
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+   
+
+aA

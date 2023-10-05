@@ -1,0 +1,160 @@
+—_--_
+
+SD TD TT DTD DD DT DDD DD DCD DD CD DDD DDS DST DD DP lL ir ll”
+
+158 Appendix IT
+
+if
+
+   
+   
+   
+    
+    
+   
+   
+ 
+  
+ 
+  
+ 
+   
+      
+  
+
+\F(NADO.LT.O) GO
+63621 WAITE CUNO 63608) | BELL
+69688 F T(1%,A4, VOLUME BASE 7'$)
+rer ,0816,8RR 83621) VOLBAS
+a eee).
+
+ae (NADD),OR.VOLBAS.EQ.VB(NADDM)) GOTO 53521
+
+enees WATELLN OaLL
+RATIO Ad noes) OH.
+vt is aA boe23 PEEH
+A Ney 1 ADD) OFF EH,EQ.PH(NADDM)) GOTO 53523
+
+i
+
+. a ae fi
+nae ove
+on ore
+aer¢(
+
+. mn)
+
+- an .
+
+INADO LT .0,OR, Dard on NDP) GO TO 53528
+
+{*
+
+a mY (NQUM)
+
+:. , 7
+"
+
+a grou (NC.NB)
+
+O16 ON Kay (3), NAME
+YB(111),P14(111), NAME(7), TITLE(20),P(7)
+
+me ne ppibatar 11)
+
+° 2 Ah ee MnEr(? LECT
+; % aan /AiN Hic \PH,LBETA,MMC,NAME, TITLE
+
+CEIEN Sadao) Nhe
+
+nn ae Ad a
+
+Benen Mt vi LUNO
+re -¢ ;
+
+RA LEPONT/8/,BRLL/7/
+
+We
+
+AWATTERLLING 000) BELL
+000 "FORMAT (Hdd, ABPINEMENT OF BTOICHIOMETRY’,/)
+e001 + i BAU 4
+"eu 7 AL : hly questionable procedure and’
+51), NAMI (|), MMC(!),1=1,NC)
+a: an hy 10.0.0 MMOLES)
+1K, SGMBONENT NUMBBAB(7I2) 7.8)
+on 8, RA=601 (REP I=, NC)
+6031 WAIT
+004
+608
+
+: Refinement of etolchiometric parameters’
+
+an SRWAT TAA, A ANTER sa INCREMENT’)
+FORE T(F10.0)
+
+Appendix IT 159
+
+IF(PP.EQ.0.0) RETURN
+FCT =2
+6051 WRITE(LUNO,610) BELL,LIMCNT
+610 FORMAT(1X,A4,"ENTER MAX # ITERATIONS (default, 113,')',$)
+C*****NQUIT is a flag; 01 will FORTRAN STOP at end of this subroutine
+READ(LUNI,603,ERR=6051) LIMCNT,NQUIT |
+if (liment.eq.99)liment =999
+IF(LIMCNT.EQ.0) LIMCNT =5
+CALL INPUT(MM)
+NDUM=0
+CALL BODY (NDUM)
+CALL REFINE
+WRITE (LUNO,607) (MMC(I),!=1,NC),SIGFIT -
+NREF = 1
+DO 10 l=1,NC
+PMMC(!) = MMC(\)
+10  P(l)=PP
+DO 11 1=1,NS
+11. PLBETA(i) =LBETA(I)
+PSIGMA=SIGFIT
+100 SO=SIGFIT
+105 J=0
+110 $1=SIGFIT
+J=J+1
+M=MREF(J)
+IF(M.GT.0)GO TO 120
+GO TO 300
+120 X(1)=MMC(M)
+Y(1)=S1
+MMC(M) = MMC(M) + P(J)
+CALL INPUT(MM)'
+NDUM=0
+CALL BODY(NDUM)
+WRITE(LUNO,607)(MMC((),I = 1,NC), SIGFIT
+S2= SIGFIT
+X(2) = MMC(M)
+Y(2)=S2
+IF(S2.LE.S1) GO TO 130
+P(J) =-P(J)
+MMC™): IMC (M) +2*P(J)
+GO TO
+130 MMCIM) = MMC(M) +P(J)
+140 CALL INPUT(MM)
+NDUM=0
+CALL BODY(NDUM)
+WRITE(LUNO,609) (MMC (I),I= 1,NC),SIGFIT
+$3 = SIGFIT
+X(3) = MMC(M)
+Y(3)=S3
+CALL PARB
+Z1=ABS(MMC(M)-XX)
+22 =ABS(P(J))*FCT
+IF(Z1.LE.22) GOTO150
+X(1) = X(2)
+Y¥(1)=Y(2)
+X(2) = X(3)
+Y (2) = Y(3)
+GO TO 130
+150 MMC(M)=XX
+CALL INPUT(MM)
+*NDUM=0
+CALL BODY(NDUM)
+WRITE(LUNO,609) (MMC (1),I= 1,NC),SIGFIT
