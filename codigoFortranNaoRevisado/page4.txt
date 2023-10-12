@@ -1,160 +1,126 @@
-—_--_
+      IF(NADD.EQ.0.R.NADD.GT.NPD) GO TO 53528
+      IF(NADD.LT.0) GO TO 53501
+53521 WRITE(LUNO,53522) BELL
+53522 FORMAT(1X, A4, 'VOLUME BASE?', $)
+      READ(LUNI, 5216, ERR=53521) VOLBAS
+      NADDM = NADD-1
+      IF(NADDM.EQ.0) NADDM=NADD
+      IF(VOLBAS.EQ.EQ.VB(NADD).OR.VOLBAS.EQ.VB(NADDM)) GOTO 53521
+53523 WRITE(LUNO, 53524) BELL
+53524 FORMAT(1X, A4,'-LOG (H+) ?', $)
+      READ(LUNI, 5216, ERR=53523) PEEH
+      IF(PEEH.EQ.PH(NADD).OR.PEEH.EQ.PH(NADDM)) GOTO 53523
+      DO 53526 I=NADD, NDPII = NDP + NADD - I
+      II = NDP + NADD-I
+      VB(II+1)=VB(II)
+53526 PH(II+1) = PH(II)
+      VB(NADD)=VOLBAS
+      PH(NAD)=PEEHNDP=NDP+1
+      I2=I2+1
+      GO TO 53501
+      53528 MM = 1
+      CALL INPUT(MM)
+      MM = 0
+      NDUM = -2
+      CALL BODY(NDUM)
+      GO TO 70
+      END
 
-SD TD TT DTD DD DT DDD DD DCD DD CD DDD DDS DST DD DP lL ir ll”
+      SUBROTINE STOICH(NC, NS)
+      IMPLICIT REAL*8 (A-H, O-Z)
+      DOUBLE PRECISION X(3), Y(3), NAME
+      DIMENSION VB(111), PH(111), NAME(7), TITLE(20), P(7)
+      DIMENSION PMMC(7) PLBETA(111)
+      REAL*8 MMC(7), LBETA(111)
+      INTEGER*2 BELL
+      CHARACTER*3 ADJ
+      INTEGER IS(111,7), IC(7), MREF(7), FCT
+      COMMON /AINP/ SIGFIT, IS, IC, BS, LBETA, MMC, NAME, TITLE
+      COMMON /FFFF/ X, Y, XX
+      COMMON /GGGG/ NREF
+      COMMON /LLLL/ LUNI, LUNO
+      COMMON /MMMM/ ADJ
+      DATA LIMCNT/5/,BELL/7/
+      NCOUNT = 0
+      MM=1
+      WRITE(LUNO, 600) BELL
+600   FORMAT(1X,A4,'REFINEMENT OF STOICHIOMETRY',/)
+      WRITE(LUNO,6001) BELL
+6001  FORMAT('CAUTION:refinement of stoichimetric parameters'
+     1'is usually',/,10x,'a highly questionable prcedure and'
+     2'should be avoided', //)
+     WRITE(LUNO,601)(I,NAME(I),MMC(I),I=1,NC)
+601  FORMAT(1X,I2,1X,A8,F10.5,3X,'MMOLES')
+6011 WRITE(LUNO, 602)
+602  FORMAT(1X,'COMPONENT NUMBERS(7I2)?'$)
+     READ(LUNI,603,ERR=6011)(MREF(I),I=1,NC)
+603  FORMAT(7I2)
+6031 WRITE(LUNO,604) BELL
+604  FORMAT(1X,A4,'ENTER SMALL INCREMENT',$)
+     READ(LUNI,605,ERR=6031) PP
+605  FORMAT(F10,6)
 
-158 Appendix IT
 
-if
-
-   
-   
-   
-    
-    
-   
-   
- 
-  
- 
-  
- 
-   
-      
-  
-
-\F(NADO.LT.O) GO
-63621 WAITE CUNO 63608) | BELL
-69688 F T(1%,A4, VOLUME BASE 7'$)
-rer ,0816,8RR 83621) VOLBAS
-a eee).
-
-ae (NADD),OR.VOLBAS.EQ.VB(NADDM)) GOTO 53521
-
-enees WATELLN OaLL
-RATIO Ad noes) OH.
-vt is aA boe23 PEEH
-A Ney 1 ADD) OFF EH,EQ.PH(NADDM)) GOTO 53523
-
-i
-
-. a ae fi
-nae ove
-on ore
-aer¢(
-
-. mn)
-
-- an .
-
-INADO LT .0,OR, Dard on NDP) GO TO 53528
-
-{*
-
-a mY (NQUM)
-
-:. , 7
-"
-
-a grou (NC.NB)
-
-O16 ON Kay (3), NAME
-YB(111),P14(111), NAME(7), TITLE(20),P(7)
-
-me ne ppibatar 11)
-
-° 2 Ah ee MnEr(? LECT
-; % aan /AiN Hic \PH,LBETA,MMC,NAME, TITLE
-
-CEIEN Sadao) Nhe
-
-nn ae Ad a
-
-Benen Mt vi LUNO
-re -¢ ;
-
-RA LEPONT/8/,BRLL/7/
-
-We
-
-AWATTERLLING 000) BELL
-000 "FORMAT (Hdd, ABPINEMENT OF BTOICHIOMETRY’,/)
-e001 + i BAU 4
-"eu 7 AL : hly questionable procedure and’
-51), NAMI (|), MMC(!),1=1,NC)
-a: an hy 10.0.0 MMOLES)
-1K, SGMBONENT NUMBBAB(7I2) 7.8)
-on 8, RA=601 (REP I=, NC)
-6031 WAIT
-004
-608
-
-: Refinement of etolchiometric parameters’
-
-an SRWAT TAA, A ANTER sa INCREMENT’)
-FORE T(F10.0)
-
-Appendix IT 159
-
-IF(PP.EQ.0.0) RETURN
-FCT =2
+     IF(PP.EQ.0.0) RETURN
+     FCT =2
 6051 WRITE(LUNO,610) BELL,LIMCNT
-610 FORMAT(1X,A4,"ENTER MAX # ITERATIONS (default, 113,')',$)
+610  FORMAT(1X,A4,'ENTER MAX # ITERATIONS (default', 1I3,')',$)
 C*****NQUIT is a flag; 01 will FORTRAN STOP at end of this subroutine
-READ(LUNI,603,ERR=6051) LIMCNT,NQUIT |
-if (liment.eq.99)liment =999
-IF(LIMCNT.EQ.0) LIMCNT =5
-CALL INPUT(MM)
-NDUM=0
-CALL BODY (NDUM)
-CALL REFINE
-WRITE (LUNO,607) (MMC(I),!=1,NC),SIGFIT -
-NREF = 1
-DO 10 l=1,NC
-PMMC(!) = MMC(\)
-10  P(l)=PP
-DO 11 1=1,NS
-11. PLBETA(i) =LBETA(I)
-PSIGMA=SIGFIT
-100 SO=SIGFIT
-105 J=0
-110 $1=SIGFIT
-J=J+1
-M=MREF(J)
-IF(M.GT.0)GO TO 120
-GO TO 300
-120 X(1)=MMC(M)
-Y(1)=S1
-MMC(M) = MMC(M) + P(J)
-CALL INPUT(MM)'
-NDUM=0
-CALL BODY(NDUM)
-WRITE(LUNO,607)(MMC((),I = 1,NC), SIGFIT
-S2= SIGFIT
-X(2) = MMC(M)
-Y(2)=S2
-IF(S2.LE.S1) GO TO 130
-P(J) =-P(J)
-MMC™): IMC (M) +2*P(J)
-GO TO
-130 MMCIM) = MMC(M) +P(J)
-140 CALL INPUT(MM)
-NDUM=0
-CALL BODY(NDUM)
-WRITE(LUNO,609) (MMC (I),I= 1,NC),SIGFIT
-$3 = SIGFIT
-X(3) = MMC(M)
-Y(3)=S3
-CALL PARB
-Z1=ABS(MMC(M)-XX)
-22 =ABS(P(J))*FCT
-IF(Z1.LE.22) GOTO150
-X(1) = X(2)
-Y¥(1)=Y(2)
-X(2) = X(3)
-Y (2) = Y(3)
-GO TO 130
-150 MMC(M)=XX
-CALL INPUT(MM)
-*NDUM=0
-CALL BODY(NDUM)
-WRITE(LUNO,609) (MMC (1),I= 1,NC),SIGFIT
+     READ(LUNI,603,ERR=6051) LIMCNT,NQUIT
+     if(limcnt.eq.99)limcnt=999
+     IF(LIMCNT.EQ.0) LIMCNT=5
+     CALL INPUT(MM)
+     NDUM=0
+     CALL BODY(NDUM)
+     CALL REFINE
+     WRITE (LUNO,607) (MMC(I),I=1,NC),SIGFIT
+     NREF = 1
+     DO 10 I=1,NC
+     PMMC(I) = MMC(I)
+10   P(I)=PP
+     DO 11 I=1,NS
+11   PLBETA(i) =LBETA(I)
+     PSIGMA=SIGFIT
+100  S0=SIGFIT
+105  J=0
+110  S1=SIGFIT
+     J=J+1
+     M=MREF(J)
+     IF(M.GT.0)GO TO 120
+     GO TO 300
+120  X(1)=MMC(M)
+     Y(1)=S1
+     MMC(M) = MMC(M) + P(J)
+     CALL INPUT(MM)
+     NDUM=0
+     CALL BODY(NDUM)
+     WRITE(LUNO,607)(MMC(I),I = 1,NC), SIGFIT
+     S2= SIGFIT
+     X(2) = MMC(M)
+     Y(2)=S2
+     IF(S2.LE.S1) GO TO 130
+     P(J) =-P(J)
+     MMC(M)=MMC(M)+2*P(J)
+     GO TO 140
+130  MMC(M) = MMC(M)+P(J)
+140  CALL INPUT(MM)
+     NDUM=0
+     CALL BODY(NDUM)
+     WRITE(LUNO,609) (MMC (I),I= 1,NC),SIGFIT
+     S3 = SIGFIT
+     X(3) = MMC(M)
+     Y(3)=S3
+     CALL PARB
+     Z1 = ABS(MMC(M)-XX)
+     Z2 = ABS(P(J))*FCT
+     IF(Z1.LE.Z2) GOTO 150
+     X(1) = X(2)
+     Y(1)=Y(2)
+     X(2) = X(3)
+     Y(2) = Y(3)
+     GO TO 130
+150  MMC(M)=XX
+     CALL INPUT(MM)
+     NDUM=0
+     CALL BODY(NDUM)
+     WRITE(LUNO,609) (MMC(I),I= 1,NC),SIGFIT
