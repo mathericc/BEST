@@ -12,6 +12,7 @@ import java.util.Date;
  * @author mathericc
  */
 public class Experiment {
+    int id;
     String name;
     Date date;
     
@@ -26,7 +27,8 @@ public class Experiment {
     ArrayList<Specie> species;
     ArrayList<Point> points;
 
-    public Experiment(String name, Date date) {
+    public Experiment(int id, String name, Date date) {
+        this.id = id;
         this.name = name;
         this.date = date;
     }

@@ -4,6 +4,8 @@
  */
 package Views;
 
+import Controllers.ControllerExperiment;
+
 /**
  *
  * @author mathericc
@@ -15,6 +17,7 @@ public class Experiment extends javax.swing.JFrame {
      */
     public Experiment() {
         initComponents();
+        inicio();
     }
 
     /**
@@ -37,7 +40,7 @@ public class Experiment extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jTextFieldV0 = new javax.swing.JTextField();
         jTextFieldNB = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jButtonSaveExp = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListExperiment = new javax.swing.JList<>();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -63,7 +66,12 @@ public class Experiment extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Save Experiment");
+        jButtonSaveExp.setText("Save Experiment");
+        jButtonSaveExp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveExpActionPerformed(evt);
+            }
+        });
 
         jListExperiment.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jListExperiment.setToolTipText("");
@@ -79,7 +87,7 @@ public class Experiment extends javax.swing.JFrame {
         jDesktopPane1.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jTextFieldV0, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jTextFieldNB, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButtonSaveExp, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -89,7 +97,7 @@ public class Experiment extends javax.swing.JFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(jButtonSaveExp)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jDesktopPane1Layout.createSequentialGroup()
@@ -134,7 +142,7 @@ public class Experiment extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jTextFieldPHCOR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
-                .addComponent(jButton1)
+                .addComponent(jButtonSaveExp)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
@@ -168,6 +176,10 @@ public class Experiment extends javax.swing.JFrame {
     private void jTextFieldV0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldV0ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldV0ActionPerformed
+
+    private void jButtonSaveExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveExpActionPerformed
+        controlador.createExperiment();
+    }//GEN-LAST:event_jButtonSaveExpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,7 +217,7 @@ public class Experiment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonSaveExp;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
@@ -224,4 +236,11 @@ public class Experiment extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPHCOR;
     private javax.swing.JTextField jTextFieldV0;
     // End of variables declaration//GEN-END:variables
+   ControllerExperiment controlador;
+   
+   void inicio(){
+       controlador = new ControllerExperiment(jTExperimentName, jTextFieldV0, jTextFieldMMACID, jTextFieldPHCOR, jTextFieldNB, jListExperiment);
+   }
+   
+   
 }
