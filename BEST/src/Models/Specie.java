@@ -4,10 +4,42 @@
  */
 package Models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mathericc
  */
 public class Specie {
+    float logBeta;
+    ArrayList<Float> stoichiometrics;
+
+    public Specie(float logBeta, ArrayList<Float> stoichiometrics) {
+        this.logBeta = logBeta;
+        this.stoichiometrics = stoichiometrics;
+    }
+
+    public float getLogBeta() {
+        return logBeta;
+    }
+
+    public void setLogBeta(float logBeta) {
+        this.logBeta = logBeta;
+    }
+
+    public ArrayList<Float> getStoichiometrics() {
+        return stoichiometrics;
+    }
+
+    public void setStoichiometrics(ArrayList<Float> stoichiometrics) {
+        this.stoichiometrics = stoichiometrics;
+    }
+    
+    
+
+    
+    
+    
+    
     
 }
