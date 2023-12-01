@@ -33,6 +33,37 @@ public class Experiment {
         this.date = date;
     }
 
+    @Override public String toString(){
+        String ex = "";
+            
+        ex += this.name + "\n";
+        
+        for (Component component : this.components){
+            ex += component.name +" " + component.quantity + "\n"; 
+        }
+        ex += "\n";
+        
+        ex += "" + this.initialVolume + " " + this.baseConcentration + " " + this.StrongAcidQuantity + " " + this.phCorrection + "\n"; 
+       
+       
+        
+        for (int i = 0; i < this.species.size(); i++){
+              ex += "" + this.species.get(i).toString() + "\n";
+        }
+        
+        ex += "\n";
+        
+        ex += "" + this.points.get(0).toString() + " " + this.getConcentrationGuess().toString() + "\n";
+        
+        for (int i = 1; i < this.points.size(); i++){
+              ex += "" + this.points.get(i).toString() + "\n";
+        }
+        
+        
+        return ex;
+        
+    }
+    
     public String getName() {
         return name;
     }

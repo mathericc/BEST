@@ -6,6 +6,7 @@ package Controllers;
 
 
 import Models.Experiment;
+import Models.Point;
 import Models.Specie;
 import java.awt.Component;
 import java.awt.Container;
@@ -198,7 +199,7 @@ public class ControllerDataExperiment {
         list.setModel(model);
     }
     
-    public void AddComponent(){
+    public void addComponent(){
         Models.Component component;
         String name = jTComponentName.getText();
         float quantity = Float.parseFloat(jTComponentQuantity.getText());
@@ -209,7 +210,7 @@ public class ControllerDataExperiment {
         updateList(jListComponent, this.experiment.getComponents());
     }
     
-    public void AddSpecie(){
+    public void addSpecie(){
         Specie specie;
         float logBeta = Float.parseFloat(jTLBETA.getText());
         String stoich = jTIS.getText();
@@ -223,6 +224,27 @@ public class ControllerDataExperiment {
         specie = new Specie(logBeta, stoichometrics);
         this.experiment.addSpecie(specie);
         updateList(jListSpecies, this.experiment.getSpecies());
+    }
+    
+    public void addPoint(){
+        Point point;
+        float volumeBase = Float.parseFloat(jTVB.getText());
+        float ph = Float.parseFloat(jTPH.getText());
+        
+        point = new Point(volumeBase, ph);
+        
+        this.experiment.addPoint(point);
+        updateList(jListPoints, this.experiment.getPoints());
+        
+    }
+    
+    
+    public void addGuessValues(){
+        String[] list = jTRCC.getText().split(",");
+        for (String value : list){
+            this.experiment.addConcentrationGuess(Float.parseFloat(value));
+        }
+        System.out.println(this.experiment.toString());
     }
     
     

@@ -17,6 +17,10 @@ public class Point {
         this.ph = ph;
     }
     
+    @Override public String toString(){
+        return "" + this.volumeBase + " - " + this.ph;
+    }
+    
     
 
     public float getVolumeBase() {
