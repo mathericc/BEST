@@ -4,6 +4,8 @@
  */
 package Views;
 
+import Controllers.ControllerDataExperiment;
+
 /**
  *
  * @author mathericc
@@ -12,9 +14,15 @@ public class ExperimentData extends javax.swing.JPanel {
 
     /**
      * Creates new form Experiment
+     * 
+     * 
      */
-    public ExperimentData() {
+    
+    Models.Experiment experiment;
+    public ExperimentData(Models.Experiment experiment) {
         initComponents();
+        this.experiment = experiment;
+        init();
     }
 
     /**
@@ -32,7 +40,7 @@ public class ExperimentData extends javax.swing.JPanel {
         jLabel18 = new javax.swing.JLabel();
         jTComponentName = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextFieldMMC = new javax.swing.JTextField();
+        jTComponentQuantity = new javax.swing.JTextField();
         jBSaveComponent = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         jTextFieldRCC1 = new javax.swing.JTextField();
@@ -44,8 +52,6 @@ public class ExperimentData extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jTextFieldLBETA = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jTextFieldIC = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jTextFieldIS = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -62,9 +68,9 @@ public class ExperimentData extends javax.swing.JPanel {
         jTextFieldRCC = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextAreaPoints = new javax.swing.JTextArea();
         jLabel17 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jListPoints = new javax.swing.JList<>();
 
         jLabel2.setText("//Refere-se Ao Bloco 2");
 
@@ -114,7 +120,7 @@ public class ExperimentData extends javax.swing.JPanel {
                                 .addGap(28, 28, 28)
                                 .addComponent(jLabel19)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldMMC, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTComponentQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jBSaveComponent))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -141,7 +147,7 @@ public class ExperimentData extends javax.swing.JPanel {
                     .addComponent(jLabel18)
                     .addComponent(jTComponentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19)
-                    .addComponent(jTextFieldMMC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTComponentQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBSaveComponent))
                 .addGap(21, 21, 21)
                 .addComponent(jLabel20)
@@ -155,8 +161,6 @@ public class ExperimentData extends javax.swing.JPanel {
         jLabel3.setText("//Refere-se aos blocos 3 e 4");
 
         jLabel9.setText("Log Beta β");
-
-        jLabel10.setText("Component Number");
 
         jLabel11.setText("Stoichiometry");
 
@@ -189,45 +193,43 @@ public class ExperimentData extends javax.swing.JPanel {
                         .addComponent(jLabel3))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldLBETA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldIC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel11)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jButton1))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldLBETA, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(60, 60, 60)
+                                .addComponent(jTextFieldIS, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton1)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jLabel3)
-                .addGap(34, 34, 34)
+                .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
                     .addComponent(jTextFieldLBETA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextFieldIC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
-                    .addComponent(jTextFieldIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(120, 120, 120)
+                    .addComponent(jTextFieldIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Species", jPanel2);
@@ -255,12 +257,10 @@ public class ExperimentData extends javax.swing.JPanel {
             }
         });
 
-        jTextAreaPoints.setEditable(false);
-        jTextAreaPoints.setColumns(20);
-        jTextAreaPoints.setRows(5);
-        jScrollPane2.setViewportView(jTextAreaPoints);
-
         jLabel17.setText("Points");
+
+        jListPoints.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane4.setViewportView(jListPoints);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -270,7 +270,6 @@ public class ExperimentData extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
                     .addComponent(jLabel4)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -288,8 +287,9 @@ public class ExperimentData extends javax.swing.JPanel {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jTextFieldRCC, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2)))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                                .addComponent(jButton2))))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,9 +311,9 @@ public class ExperimentData extends javax.swing.JPanel {
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Titration Points", jPanel3);
@@ -335,7 +335,7 @@ public class ExperimentData extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextFieldISActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       controller.AddSpecie();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextFieldPHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPHActionPerformed
@@ -351,7 +351,7 @@ public class ExperimentData extends javax.swing.JPanel {
     }//GEN-LAST:event_jTComponentNameActionPerformed
 
     private void jBSaveComponentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSaveComponentActionPerformed
-        // TODO add your handling code here:
+       controller.AddComponent();
     }//GEN-LAST:event_jBSaveComponentActionPerformed
 
 
@@ -360,7 +360,6 @@ public class ExperimentData extends javax.swing.JPanel {
     private javax.swing.JButton jBSaveComponent;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -377,23 +376,28 @@ public class ExperimentData extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jListComponent;
+    private javax.swing.JList<String> jListPoints;
     private javax.swing.JList<String> jListSpecies;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTComponentName;
+    private javax.swing.JTextField jTComponentQuantity;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextAreaPoints;
-    private javax.swing.JTextField jTextFieldIC;
     private javax.swing.JTextField jTextFieldIS;
     private javax.swing.JTextField jTextFieldLBETA;
-    private javax.swing.JTextField jTextFieldMMC;
     private javax.swing.JTextField jTextFieldPH;
     private javax.swing.JTextField jTextFieldRCC;
     private javax.swing.JTextField jTextFieldRCC1;
     private javax.swing.JTextField jTextFieldVB;
     // End of variables declaration//GEN-END:variables
+    ControllerDataExperiment controller;
+    
+    public void init(){
+        controller = new ControllerDataExperiment(experiment, jBListLog, jBSaveComponent, jButton1, jButton2, jListComponent, jListSpecies, jListPoints, jTComponentName,  jTextFieldIS, jTextFieldLBETA, jTComponentQuantity, jTextFieldPH, jTextFieldRCC, jTextFieldVB);
+    }
+
 }

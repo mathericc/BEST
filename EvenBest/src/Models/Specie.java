@@ -18,6 +18,17 @@ public class Specie {
         this.logBeta = logBeta;
         this.stoichiometrics = stoichiometrics;
     }
+    
+    @Override public String toString() {
+        String stoichValues= "(";
+        
+        for (Float value: this.stoichiometrics){
+            stoichValues += String.valueOf(value) + ", ";
+        }
+        stoichValues += ")";
+        
+        return "" + this.logBeta + " - " + stoichValues;
+    }
 
     public float getLogBeta() {
         return logBeta;
@@ -33,6 +44,10 @@ public class Specie {
 
     public void setStoichiometrics(ArrayList<Float> stoichiometrics) {
         this.stoichiometrics = stoichiometrics;
+    }
+    
+    public void addSToichiomentric(Float value){
+        this.stoichiometrics.add(value);
     }
     
     

@@ -22,10 +22,10 @@ public class Experiment {
     float phCorrection;
     
     
-    ArrayList<Component> components;
-    ArrayList<Float> concentrationGuess;
-    ArrayList<Specie> species;
-    ArrayList<Point> points;
+    ArrayList<Component> components = new ArrayList<>();
+    ArrayList<Float> concentrationGuess = new ArrayList<>();
+    ArrayList<Specie> species = new ArrayList<>();
+    ArrayList<Point> points = new ArrayList<>();
 
     public Experiment(int id, String name, Date date) {
         this.id = id;
@@ -88,6 +88,10 @@ public class Experiment {
     public void setComponents(ArrayList<Component> components) {
         this.components = components;
     }
+    
+    public void addComponent(Component component){
+        this.components.add(component);
+    }
 
     public ArrayList<Float> getConcentrationGuess() {
         return concentrationGuess;
@@ -95,6 +99,10 @@ public class Experiment {
 
     public void setConcentrationGuess(ArrayList<Float> concentrationGuess) {
         this.concentrationGuess = concentrationGuess;
+    }
+    
+    public void addConcentrationGuess(Float value){
+        this.concentrationGuess.add(value);
     }
 
     public ArrayList<Specie> getSpecies() {
@@ -104,6 +112,10 @@ public class Experiment {
     public void setSpecies(ArrayList<Specie> species) {
         this.species = species;
     }
+    
+    public void addSpecie(Specie specie){
+        this.species.add(specie);
+    }
 
     public ArrayList<Point> getPoints() {
         return points;
@@ -111,6 +123,10 @@ public class Experiment {
 
     public void setPoints(ArrayList<Point> points) {
         this.points = points;
+    }
+    
+    public void addPoint(Point point){
+        this.points.add(point);
     }
     
     

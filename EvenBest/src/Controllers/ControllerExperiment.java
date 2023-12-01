@@ -27,6 +27,7 @@ public class ControllerExperiment {
     JList jListExperiment;
     DefaultListModel m;
     int currId;
+    Experiment experiment;
 
     public ControllerExperiment(JTextField JTExperiment, JTextField jTextFieldV0, JTextField jTMMAcid, JTextField jTPhCor, JTextField jtNOFB, JList jListExperiment, JDesktopPane desktopPane) {
         this.desktopPane = desktopPane;
@@ -85,7 +86,7 @@ public class ControllerExperiment {
         desktopPane.removeAll();
         desktopPane.updateUI();
         Dimension resolucao = desktopPane.getSize(); // Captura resoluçao do container
-        ExperimentData t = new ExperimentData();
+        ExperimentData t = new ExperimentData(this.experiment);
         t.setSize(resolucao);
         t.setLocation(0, 0);
         desktopPane.add(t);
@@ -124,7 +125,7 @@ public class ControllerExperiment {
         return true;
     }
 
-    public Experiment createExperiment() {
+    public void createExperiment() {
         try {
             if (this.validateEverythingElse() &&
             this.validateNameInput() &&
@@ -154,6 +155,6 @@ public class ControllerExperiment {
         this.currId++;
         this.jListExperiment.setModel(m);
         
-        return ex;
+        this.experiment = ex;
     }
 }

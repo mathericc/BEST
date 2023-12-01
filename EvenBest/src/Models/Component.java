@@ -16,6 +16,10 @@ public class Component {
         this.name = name;
         this.quantity = quantity;
     }
+    
+    @Override public String toString() {
+        return "" + this.name + " - " + this.quantity + "milemoles";
+    }
 
     public String getName() {
         return name;
@@ -32,6 +36,8 @@ public class Component {
     public void setQuantity(float quantity) {
         this.quantity = quantity;
     }
+    
+    
     
     
 }
