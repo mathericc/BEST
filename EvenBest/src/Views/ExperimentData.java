@@ -48,6 +48,7 @@ public class ExperimentData extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jListComponent = new javax.swing.JList<>();
         jBListLog = new javax.swing.JButton();
+        jBDeleteComponent = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -94,12 +95,24 @@ public class ExperimentData extends javax.swing.JPanel {
         jLabel21.setText("List of -Log(component concentration");
 
         jListComponent.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListComponent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListComponentMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jListComponent);
 
         jBListLog.setText("Save Values");
         jBListLog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBListLogActionPerformed(evt);
+            }
+        });
+
+        jBDeleteComponent.setText("Delete Component");
+        jBDeleteComponent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDeleteComponentActionPerformed(evt);
             }
         });
 
@@ -123,9 +136,11 @@ public class ExperimentData extends javax.swing.JPanel {
                                 .addGap(28, 28, 28)
                                 .addComponent(jLabel19)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTComponentQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jBSaveComponent))
+                                .addComponent(jTComponentQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBSaveComponent)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBDeleteComponent))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel21)
                                 .addGap(18, 18, 18)
@@ -133,7 +148,7 @@ public class ExperimentData extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jBListLog))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +166,8 @@ public class ExperimentData extends javax.swing.JPanel {
                     .addComponent(jTComponentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19)
                     .addComponent(jTComponentQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBSaveComponent))
+                    .addComponent(jBSaveComponent)
+                    .addComponent(jBDeleteComponent))
                 .addGap(21, 21, 21)
                 .addComponent(jLabel20)
                 .addGap(18, 18, 18)
@@ -358,8 +374,17 @@ public class ExperimentData extends javax.swing.JPanel {
       controller.addGuessValues();
     }//GEN-LAST:event_jBListLogActionPerformed
 
+    private void jListComponentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListComponentMouseClicked
+        controller.loadComponendData();
+    }//GEN-LAST:event_jListComponentMouseClicked
+
+    private void jBDeleteComponentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDeleteComponentActionPerformed
+        controller.deleteComponent();
+    }//GEN-LAST:event_jBDeleteComponentActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBDeleteComponent;
     private javax.swing.JButton jBListLog;
     private javax.swing.JButton jBSaveComponent;
     private javax.swing.JButton jButton1;

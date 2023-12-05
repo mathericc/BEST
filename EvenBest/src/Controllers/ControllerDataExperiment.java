@@ -40,7 +40,6 @@ public class ControllerDataExperiment {
     JTextField jTPH;
     JTextField jTRCC;
     JTextField jTVB;
-
     public ControllerDataExperiment(Experiment experiment, JButton JBListLog, JButton JBSaaveComponent, JButton JButton1, JButton JButton2, JList<String> jListComponent, JList<String> jListSpecies, JList<String> jListPoints, JTextField jTComponentName, JTextField jTIS, JTextField jTLBETA, JTextField jTMMC, JTextField jTPH, JTextField jTRCC, JTextField jTVB) {
         this.experiment = experiment;
         this.JBListLog = JBListLog;
@@ -194,7 +193,7 @@ public class ControllerDataExperiment {
         DefaultListModel model = new DefaultListModel();
         for (var itr : data){
            String item =  itr.toString();
-           model.add( 0,item);
+           model.addElement(item);
         }
         list.setModel(model);
     }
@@ -248,8 +247,26 @@ public class ControllerDataExperiment {
     }
     
     
+    public boolean validateComponent(){
+        return true;
+    }
     
     
+    public void loadComponendData(){
+        int selectedIndex = this.jListComponent.getSelectedIndex();
+        Models.Component selectedComponent = this.experiment.getComponents().get(selectedIndex);
+        this.jTComponentName.setText(selectedComponent.getName());
+        this.jTComponentQuantity.setText(Float.toString(selectedComponent.getQuantity()));
+        
+    }
+    
+    public void deleteComponent(){
+        int selectedIndex = this.jListComponent.getSelectedIndex();
+        Models.Component selectedComponent = this.experiment.getComponents().get(selectedIndex);
+        this.experiment.getComponents().remove(selectedIndex);
+        this.updateList(jListComponent, this.experiment.getComponents());
+    
+    }
     
        
     
