@@ -252,20 +252,51 @@ public class ControllerDataExperiment {
     }
     
     
+    public <T> T MapFromListToArray(JList list, ArrayList<T> objectList){
+        int selectedIndex = list.getSelectedIndex();
+        var selectedObject = objectList.get(selectedIndex);
+        return selectedObject;
+    }
+    
+   
+    
     public void loadComponendData(){
-        int selectedIndex = this.jListComponent.getSelectedIndex();
-        Models.Component selectedComponent = this.experiment.getComponents().get(selectedIndex);
+        Models.Component selectedComponent = MapFromListToArray(jListComponent, this.experiment.getComponents());
         this.jTComponentName.setText(selectedComponent.getName());
-        this.jTComponentQuantity.setText(Float.toString(selectedComponent.getQuantity()));
+        this.jTComponentQuantity.setText("" +selectedComponent.getQuantity());
         
     }
     
     public void deleteComponent(){
         int selectedIndex = this.jListComponent.getSelectedIndex();
-        Models.Component selectedComponent = this.experiment.getComponents().get(selectedIndex);
         this.experiment.getComponents().remove(selectedIndex);
         this.updateList(jListComponent, this.experiment.getComponents());
+    }
     
+     public void loadSpecieData(){
+        Specie selectedSpecie = MapFromListToArray(jListSpecies, this.experiment.getSpecies());
+        this.jTLBETA.setText(""+ selectedSpecie.getLogBeta());
+        this.jTIS.setText("" +selectedSpecie.getStoichiometrics());
+        
+    }
+    
+    public void deleteSpecie(){
+        int selectedIndex = this.jListSpecies.getSelectedIndex();
+        this.experiment.getSpecies().remove(selectedIndex);
+        this.updateList(jListSpecies, this.experiment.getSpecies());
+    }
+    
+     public void loadPointsData(){
+        Point selectedPoint = MapFromListToArray(jListPoints, this.experiment.getPoints());
+        this.jTVB.setText("" + selectedPoint.getVolumeBase());
+        this.jTPH.setText("" + selectedPoint.getPh());
+        
+    }
+    
+    public void deletePoint(){
+        int selectedIndex = this.jListPoints.getSelectedIndex();
+        this.experiment.getPoints().remove(selectedIndex);
+        this.updateList(jListPoints, this.experiment.getPoints());
     }
     
        

@@ -59,6 +59,7 @@ public class ExperimentData extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jListSpecies = new javax.swing.JList<>();
+        jButtonDeleteSpecie = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -70,6 +71,7 @@ public class ExperimentData extends javax.swing.JPanel {
         jLabel17 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jListPoints = new javax.swing.JList<>();
+        jButtonDeletePoint = new javax.swing.JButton();
 
         jLabel2.setText("//Refere-se Ao Bloco 2");
 
@@ -199,7 +201,19 @@ public class ExperimentData extends javax.swing.JPanel {
         jLabel12.setText("Species");
 
         jListSpecies.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListSpecies.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListSpeciesMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jListSpecies);
+
+        jButtonDeleteSpecie.setText("Delete Specie");
+        jButtonDeleteSpecie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteSpecieActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -221,7 +235,9 @@ public class ExperimentData extends javax.swing.JPanel {
                                 .addComponent(jLabel11)
                                 .addGap(60, 60, 60)
                                 .addComponent(jTextFieldIS, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1)))
+                            .addComponent(jButton1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonDeleteSpecie))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +259,9 @@ public class ExperimentData extends javax.swing.JPanel {
                     .addComponent(jLabel11)
                     .addComponent(jTextFieldIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButtonDeleteSpecie))
                 .addGap(12, 12, 12)
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
@@ -277,7 +295,19 @@ public class ExperimentData extends javax.swing.JPanel {
         jLabel17.setText("Points");
 
         jListPoints.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListPoints.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListPointsMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jListPoints);
+
+        jButtonDeletePoint.setText("Delete Point");
+        jButtonDeletePoint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeletePointActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -301,9 +331,11 @@ public class ExperimentData extends javax.swing.JPanel {
                                     .addComponent(jTextFieldVB, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                                     .addComponent(jTextFieldPH))
                                 .addGap(60, 60, 60)
-                                .addComponent(jButton2)))
-                        .addGap(183, 183, 183)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                                .addComponent(jButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonDeletePoint)))
+                        .addGap(88, 88, 88)))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,7 +356,9 @@ public class ExperimentData extends javax.swing.JPanel {
                             .addComponent(jTextFieldPH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(jButtonDeletePoint))
                         .addGap(41, 41, 41)))
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
@@ -382,6 +416,22 @@ public class ExperimentData extends javax.swing.JPanel {
         controller.deleteComponent();
     }//GEN-LAST:event_jBDeleteComponentActionPerformed
 
+    private void jListPointsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListPointsMouseClicked
+        controller.loadPointsData();
+    }//GEN-LAST:event_jListPointsMouseClicked
+
+    private void jButtonDeletePointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeletePointActionPerformed
+       controller.deletePoint();
+    }//GEN-LAST:event_jButtonDeletePointActionPerformed
+
+    private void jButtonDeleteSpecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteSpecieActionPerformed
+        controller.deleteSpecie();
+    }//GEN-LAST:event_jButtonDeleteSpecieActionPerformed
+
+    private void jListSpeciesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListSpeciesMouseClicked
+      controller.loadSpecieData();
+    }//GEN-LAST:event_jListSpeciesMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBDeleteComponent;
@@ -389,6 +439,8 @@ public class ExperimentData extends javax.swing.JPanel {
     private javax.swing.JButton jBSaveComponent;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonDeletePoint;
+    private javax.swing.JButton jButtonDeleteSpecie;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

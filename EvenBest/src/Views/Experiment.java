@@ -197,7 +197,6 @@ public class Experiment extends javax.swing.JFrame {
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         controlador.GoToDataScreen();
-        System.out.println("Sim");
     }//GEN-LAST:event_jMenu2MouseClicked
 
     /**
