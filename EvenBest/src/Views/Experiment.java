@@ -43,6 +43,7 @@ public class Experiment extends javax.swing.JFrame {
         jButtonSaveExp = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListExperiment = new javax.swing.JList<>();
+        jButtonDeleteExp = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -77,6 +78,13 @@ public class Experiment extends javax.swing.JFrame {
         jListExperiment.setToolTipText("");
         jScrollPane1.setViewportView(jListExperiment);
 
+        jButtonDeleteExp.setText("Delete Experiment");
+        jButtonDeleteExp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteExpActionPerformed(evt);
+            }
+        });
+
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jTExperimentName, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jTextFieldMMACID, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -89,6 +97,7 @@ public class Experiment extends javax.swing.JFrame {
         jDesktopPane1.setLayer(jTextFieldNB, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jButtonSaveExp, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButtonDeleteExp, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -97,7 +106,10 @@ public class Experiment extends javax.swing.JFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonSaveExp)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jButtonSaveExp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonDeleteExp))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jDesktopPane1Layout.createSequentialGroup()
@@ -142,7 +154,9 @@ public class Experiment extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jTextFieldPHCOR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
-                .addComponent(jButtonSaveExp)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSaveExp)
+                    .addComponent(jButtonDeleteExp))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
@@ -199,6 +213,10 @@ public class Experiment extends javax.swing.JFrame {
         controlador.GoToDataScreen();
     }//GEN-LAST:event_jMenu2MouseClicked
 
+    private void jButtonDeleteExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteExpActionPerformed
+        controlador.deleteExperiment();
+    }//GEN-LAST:event_jButtonDeleteExpActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -235,6 +253,7 @@ public class Experiment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonDeleteExp;
     private javax.swing.JButton jButtonSaveExp;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;

@@ -7,11 +7,13 @@ package Controllers;
 import Models.Experiment;
 import Views.ExperimentData;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -92,17 +94,8 @@ public class ControllerExperiment {
         desktopPane.add(t);
         t.setVisible(true);
     }
-
-    void cleanDisplay() {
-        this.JTExperiment.setText("");
-        this.jTMMAcid.setText("");
-        this.jTPhCor.setText("");
-        this.jTextFieldV0.setText("");
-        this.jTNOFB.setText("");
-    }
-
-    boolean validateNameInput() {
-        return !this.JTExperiment.equals("");
+boolean validateNameInput() {
+        return !this.JTExperiment.getText().equals("");
     }
 
     boolean validatePhInput() {
@@ -118,43 +111,96 @@ public class ControllerExperiment {
 
     boolean validateEverythingElse() {
         try {
-            var readValue = Float.parseFloat(this.jTPhCor.getText());
+            Float.parseFloat(this.jTPhCor.getText());
+            Float.parseFloat(this.jTMMAcid.getText());
+            Float.parseFloat(this.jTNOFB.getText());
+            Float.parseFloat(this.jTextFieldV0.getText());
+            
         } catch (Exception e) {
             return false;
         };
         return true;
     }
 
-    public void createExperiment() {
-        try {
-            if (this.validateEverythingElse() &&
-            this.validateNameInput() &&
-            this.validatePhInput()) {
-            };
-        } catch(Exception e) {
-            e.printStackTrace();
+    public boolean makeExperimenteValidation(){
+        if (!this.validateNameInput()) {
+            JOptionPane.showMessageDialog(null, "Não deixe nenhum campo vazio!");
+            return false;
         }
-        
-
-        String name = this.JTExperiment.getText();
-        float vol = Float.parseFloat(this.jTextFieldV0.getText());
-        float acid = Float.parseFloat(this.jTMMAcid.getText());
-        float ph = Float.parseFloat(this.jTPhCor.getText());
-        float nofb = Float.parseFloat(this.jTNOFB.getText());
-
-        Experiment ex = new Experiment(this.currId, name, new Date());
-        ex.setInitialVolume(vol);
-        ex.setPhCorrection(ph);
-        ex.setBaseConcentration(nofb);
-        ex.setStrongAcidQuantity(acid);
-        System.out.println(name);
-        
+        if(!validateEverythingElse()){
+            JOptionPane.showMessageDialog(null, "Verifique os números!\nTodo número decimal deve conter ser separado por ponto(.)!");
+            return false;
+        }
+        if(!validatePhInput()){
+            JOptionPane.showMessageDialog(null, "O PH deve ser um valor válido!");
+            return false;
+        }
+        return true;
+    }
     
-        m.add(currId,name+" - "+this.currId);
-   
-        this.currId++;
-        this.jListExperiment.setModel(m);
+    
+    
+    public void createExperiment() {
+        if(makeExperimenteValidation()){
+           String name = this.JTExperiment.getText();
+           float vol = Float.parseFloat(this.jTextFieldV0.getText());
+           float acid = Float.parseFloat(this.jTMMAcid.getText());
+           float ph = Float.parseFloat(this.jTPhCor.getText());
+           float nofb = Float.parseFloat(this.jTNOFB.getText());
+
+           Experiment ex = new Experiment(this.currId, name, new Date());
+           ex.setInitialVolume(vol);
+           ex.setPhCorrection(ph);
+           ex.setBaseConcentration(nofb);
+           ex.setStrongAcidQuantity(acid);
+           System.out.println(name);
+
+           m.addElement(name+" - "+this.currId);
+
+           this.currId++;
+           this.jListExperiment.setModel(m);
+
+           this.experiment = ex;   
+           Experiment.listOfExperiments.add(ex);
+        }
+    }
+    
+    public void cleanDisplay() {
+        this.JTExperiment.setText("");
+        this.jTMMAcid.setText("");
+        this.jTPhCor.setText("");
+        this.jTextFieldV0.setText("");
+        this.jTNOFB.setText("");
+    }
+    
+    public void loadDataFromList(){
+        int item = this.jListExperiment.getSelectedIndex();
+        var selectedExperiment = Experiment.listOfExperiments.get(item);
+        this.JTExperiment.setText(selectedExperiment.getName());
+        this.jTMMAcid.setText(Float.toString(selectedExperiment.getStrongAcidQuantity()));
+        this.jTPhCor.setText(Float.toString(selectedExperiment.getPhCorrection()));
+        this.jTextFieldV0.setText(Float.toString(selectedExperiment.getInitialVolume()));
+        this.jTNOFB.setText(Float.toString(selectedExperiment.getBaseConcentration()));
         
-        this.experiment = ex;
+    }
+    public void updateList(JList list, ArrayList data){
+        DefaultListModel model = new DefaultListModel();
+        for (var itr : data){
+           String item =  itr.toString();
+           model.addElement(item);
+        }
+        //this.m = model;
+        list.setModel(model);
+    }
+    
+    public void deleteExperiment(){
+        int item = this.jListExperiment.getSelectedIndex();
+        if(item>-1){
+            m.remove(item);
+        
+            cleanDisplay();
+        }else{
+            JOptionPane.showMessageDialog(null, "É impossível deletar um objeto sem selecioná-lo antes, anta véia!");
+        }
     }
 }
