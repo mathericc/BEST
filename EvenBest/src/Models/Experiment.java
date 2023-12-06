@@ -20,12 +20,13 @@ public class Experiment {
     float baseConcentration;
     float StrongAcidQuantity;
     float phCorrection;
-    
+    public static int Id = 0;
     
     ArrayList<Component> components = new ArrayList<>();
     ArrayList<Float> concentrationGuess = new ArrayList<>();
     ArrayList<Specie> species = new ArrayList<>();
     ArrayList<Point> points = new ArrayList<>();
+    public static ArrayList<Experiment> listOfExperiments = new ArrayList<>();
 
     public Experiment(int id, String name, Date date) {
         this.id = id;
