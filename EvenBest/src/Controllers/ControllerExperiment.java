@@ -31,6 +31,11 @@ public class ControllerExperiment {
     int currId;
     Experiment experiment;
 
+    public ControllerExperiment() {
+    }
+
+    
+    
     public ControllerExperiment(JTextField JTExperiment, JTextField jTextFieldV0, JTextField jTMMAcid, JTextField jTPhCor, JTextField jtNOFB, JList jListExperiment, JDesktopPane desktopPane) {
         this.desktopPane = desktopPane;
         this.JTExperiment = JTExperiment;
@@ -97,6 +102,7 @@ public class ControllerExperiment {
         desktopPane.updateUI();
         Dimension resolucao = desktopPane.getSize(); // Captura resoluçao do container
         var experiment = Experiment.listOfExperiments.get(jListExperiment.getSelectedIndex());
+        System.out.println(experiment.getName());
         ExperimentData t = new ExperimentData(experiment);
         t.setSize(resolucao);
         t.setLocation(0, 0);

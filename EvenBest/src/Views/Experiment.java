@@ -51,6 +51,9 @@ public class Experiment extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jDesktopPane1.setBackground(new java.awt.Color(204, 255, 204));
 
         jLabel1.setText("Experiment name:");
 
@@ -211,6 +214,7 @@ public class Experiment extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        System.out.println("chegou aqui");
         controlador.GoToDataScreen();
     }//GEN-LAST:event_jMenu2MouseClicked
 

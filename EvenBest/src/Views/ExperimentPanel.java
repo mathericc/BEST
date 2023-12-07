@@ -19,6 +19,7 @@ public class ExperimentPanel extends javax.swing.JPanel {
     public ExperimentPanel() {
         initComponents();
         inicio();
+        
     }
 
     /**
@@ -177,5 +178,8 @@ public class ExperimentPanel extends javax.swing.JPanel {
    
    void inicio(){
        controlador = new ControllerExperiment(jTExperimentName, jTextFieldV0, jTextFieldMMACID, jTextFieldPHCOR, jTextFieldNB, jListExperiment, Global.desktopPane);
+       for (Models.Experiment e : Models.Experiment.listOfExperiments) {
+           
+       }
    }
 }
