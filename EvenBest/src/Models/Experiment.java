@@ -4,6 +4,7 @@
  */
 package Models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,7 +12,7 @@ import java.util.Date;
  *
  * @author mathericc
  */
-public class Experiment {
+public class Experiment implements Serializable {
     int id;
     String name;
     Date date;

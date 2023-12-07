@@ -21,6 +21,7 @@ public class ExperimentPanel extends javax.swing.JPanel {
     public ExperimentPanel(ControllerMain cm) {
         initComponents();
         inicio();
+        controlador.deserialization();
         controlador.loadExpList();
         controladorMain = cm;
     }

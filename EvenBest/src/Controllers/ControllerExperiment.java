@@ -7,6 +7,11 @@ package Controllers;
 import Models.Experiment;
 import Views.ExperimentData;
 import java.awt.Dimension;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultListModel;
@@ -42,6 +47,55 @@ public class ControllerExperiment {
         this.m = new DefaultListModel();
         this.jListExperiment = jListExperiment;
         this.currId = 0;
+    }
+
+    public void deserialization() {
+        // Serialization 
+        try {
+            //Saving of object in a file
+            FileInputStream file = new FileInputStream("./experiments");
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            // Method for serialization of object
+            Experiment obj = null;
+            while ((obj = (Experiment)in.readObject()) != null) {
+            //do something with object  
+                Experiment.listOfExperiments.add(obj);
+            }
+            in.close();
+            file.close();
+
+            System.out.println("Object has been deserialized");
+
+        } catch (IOException ex) {
+            System.out.println("IOException is caught: " + ex);
+        }
+           catch(ClassNotFoundException ex)
+        {
+            System.out.println("ClassNotFoundException is caught");
+        }
+    }
+
+    public void serialization() {
+        // Serialization 
+        try {
+            //Saving of object in a file
+            FileOutputStream file = new FileOutputStream("./experiments");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+
+            // Method for serialization of object
+            for (int i = 0; i < Experiment.listOfExperiments.size(); i++) {
+                out.writeObject(Experiment.listOfExperiments.get(i));
+            }
+
+            out.close();
+            file.close();
+
+            System.out.println("Object has been serialized");
+
+        } catch (IOException ex) {
+            System.out.println("IOException is caught: " + ex);
+        }
     }
 
     public JTextField getJTExperiment() {
@@ -166,6 +220,7 @@ public class ControllerExperiment {
 
             this.experiment = ex;
             Experiment.listOfExperiments.add(ex);
+            this.serialization();
         }
     }
 
