@@ -21,6 +21,8 @@ public class Experiment {
     float StrongAcidQuantity;
     float phCorrection;
     
+    public static int Id = 0;
+    public static ArrayList<Experiment> listOfExperiments = new ArrayList<>();
     
     ArrayList<Component> components = new ArrayList<>();
     ArrayList<Float> concentrationGuess = new ArrayList<>();

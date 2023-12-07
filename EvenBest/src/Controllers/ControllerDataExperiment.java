@@ -8,14 +8,17 @@ package Controllers;
 import Models.Experiment;
 import Models.Point;
 import Models.Specie;
+import Views.ExperimentData;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import javax.sound.midi.Soundbank;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JDesktopPane;
 import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.text.html.HTMLDocument;
@@ -297,6 +300,17 @@ public class ControllerDataExperiment {
         int selectedIndex = this.jListPoints.getSelectedIndex();
         this.experiment.getPoints().remove(selectedIndex);
         this.updateList(jListPoints, this.experiment.getPoints());
+    }
+
+    public void goToExperiments(JDesktopPane desktopPane) {
+        desktopPane.removeAll();
+        desktopPane.updateUI();
+        Dimension resolucao = desktopPane.getSize(); // Captura resoluçao do container
+        Views.ExperimentPanel t = new Views.ExperimentPanel();
+        t.setSize(resolucao);
+        t.setLocation(0, 0);
+        desktopPane.add(t);
+        t.setVisible(true);
     }
     
        

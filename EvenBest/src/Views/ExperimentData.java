@@ -5,6 +5,7 @@
 package Views;
 
 import Controllers.ControllerDataExperiment;
+import Controllers.Global;
 
 /**
  *
@@ -49,6 +50,7 @@ public class ExperimentData extends javax.swing.JPanel {
         jListComponent = new javax.swing.JList<>();
         jBListLog = new javax.swing.JButton();
         jBDeleteComponent = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -118,6 +120,13 @@ public class ExperimentData extends javax.swing.JPanel {
             }
         });
 
+        jButton3.setText("Back to experiments");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -149,13 +158,16 @@ public class ExperimentData extends javax.swing.JPanel {
                                 .addComponent(jTextFieldRCC, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jBListLog))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3))))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap()
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(1, 1, 1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -174,7 +186,7 @@ public class ExperimentData extends javax.swing.JPanel {
                 .addComponent(jLabel20)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Components", jPanel1);
@@ -432,6 +444,10 @@ public class ExperimentData extends javax.swing.JPanel {
       controller.loadSpecieData();
     }//GEN-LAST:event_jListSpeciesMouseClicked
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        controller.goToExperiments(Global.desktopPane);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBDeleteComponent;
@@ -439,6 +455,7 @@ public class ExperimentData extends javax.swing.JPanel {
     private javax.swing.JButton jBSaveComponent;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonDeletePoint;
     private javax.swing.JButton jButtonDeleteSpecie;
     private javax.swing.JLabel jLabel11;
