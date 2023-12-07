@@ -50,6 +50,7 @@ public class ControllerExperiment {
     }
 
     public void deserialization() {
+        if (Experiment.listOfExperiments.size() > 0) return;
         // Serialization 
         try {
             //Saving of object in a file
