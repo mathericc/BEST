@@ -302,17 +302,17 @@ public class ControllerDataExperiment {
         this.updateList(jListPoints, this.experiment.getPoints());
     }
 
-    public void goToExperiments(JDesktopPane desktopPane) {
-        desktopPane.removeAll();
-        desktopPane.updateUI();
-        Dimension resolucao = desktopPane.getSize(); // Captura resoluçao do container
-        Views.ExperimentPanel t = new Views.ExperimentPanel();
-        t.setSize(resolucao);
-        t.setLocation(0, 0);
-        desktopPane.add(t);
-        t.setVisible(true);
-    }
-    
+//    public void goToExperiments(JDesktopPane desktopPane) {
+//        desktopPane.removeAll();
+//        desktopPane.updateUI();
+//        Dimension resolucao = desktopPane.getSize(); // Captura resoluçao do container
+//        Views.ExperimentPanel t = new Views.ExperimentPanel();
+//        t.setSize(resolucao);
+//        t.setLocation(0, 0);
+//        desktopPane.add(t);
+//        t.setVisible(true);
+//    }
+//    
        
     
 }

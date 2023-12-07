@@ -10,7 +10,6 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultListModel;
-import javax.swing.JDesktopPane;
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -20,13 +19,13 @@ import javax.swing.JOptionPane;
  * @author alunos
  */
 public class ControllerExperiment {
-    JDesktopPane desktopPane;
+
     JTextField JTExperiment;
     JTextField jTextFieldV0;
     JTextField jTMMAcid;
     JTextField jTPhCor;
     JTextField jTNOFB;
-    JList jListExperiment;
+    public static JList jListExperiment;
     DefaultListModel m;
     int currId;
     Experiment experiment;
@@ -34,17 +33,14 @@ public class ControllerExperiment {
     public ControllerExperiment() {
     }
 
-    
-    
-    public ControllerExperiment(JTextField JTExperiment, JTextField jTextFieldV0, JTextField jTMMAcid, JTextField jTPhCor, JTextField jtNOFB, JList jListExperiment, JDesktopPane desktopPane) {
-        this.desktopPane = desktopPane;
+    public ControllerExperiment(JTextField JTExperiment, JTextField jTextFieldV0, JTextField jTMMAcid, JTextField jTPhCor, JTextField jtNOFB, JList jListExperiment) {
         this.JTExperiment = JTExperiment;
         this.jTextFieldV0 = jTextFieldV0;
         this.jTMMAcid = jTMMAcid;
         this.jTPhCor = jTPhCor;
         this.jTNOFB = jtNOFB;
-        this.jListExperiment = jListExperiment;
         this.m = new DefaultListModel();
+        this.jListExperiment = jListExperiment;
         this.currId = 0;
     }
 
@@ -87,29 +83,7 @@ public class ControllerExperiment {
     public void setJtNOFB(JTextField jtNOFB) {
         this.jTNOFB = jtNOFB;
     }
-    
-    
-    public void GoToDataScreen(){
-        if(jListExperiment.getSelectedIndex()> -1){
-            GoToDataScreenLogic();
-        }else{
-            JOptionPane.showMessageDialog(null, "Pelamor, selecione um experimento antes de prosseguir!");
-        }
-    }
-    
-    public void GoToDataScreenLogic() {
-        desktopPane.removeAll();
-        desktopPane.updateUI();
-        Dimension resolucao = desktopPane.getSize(); // Captura resoluçao do container
-        var experiment = Experiment.listOfExperiments.get(jListExperiment.getSelectedIndex());
-        System.out.println(experiment.getName());
-        ExperimentData t = new ExperimentData(experiment);
-        t.setSize(resolucao);
-        t.setLocation(0, 0);
-        desktopPane.add(t);
-        t.setVisible(true);
-    }
-    
+
     boolean validateNameInput() {
         return !this.JTExperiment.getText().equals("");
     }
@@ -131,56 +105,70 @@ public class ControllerExperiment {
             Float.parseFloat(this.jTMMAcid.getText());
             Float.parseFloat(this.jTNOFB.getText());
             Float.parseFloat(this.jTextFieldV0.getText());
-            
+
         } catch (Exception e) {
             return false;
         };
         return true;
     }
 
-    public boolean makeExperimenteValidation(){
+    public boolean makeExperimenteValidation() {
         if (!this.validateNameInput()) {
             JOptionPane.showMessageDialog(null, "Não deixe nenhum campo vazio!");
             return false;
         }
-        if(!validateEverythingElse()){
+        if (!validateEverythingElse()) {
             JOptionPane.showMessageDialog(null, "Verifique os números!\nTodo número decimal deve conter ser separado por ponto(.)!");
             return false;
         }
-        if(!validatePhInput()){
+        if (!validatePhInput()) {
             JOptionPane.showMessageDialog(null, "O PH deve ser um valor válido!");
             return false;
         }
         return true;
     }
-    
-    
-    
+
+    public void loadExpList() {
+        this.m = new DefaultListModel();
+
+        int lsize = Experiment.listOfExperiments.size();
+        for (int i = 0; i < lsize; i++) {
+            Experiment _e = Experiment.listOfExperiments.get(i);
+            this.m.addElement(_e.getName() + "  - " + _e.getId());
+
+        }
+        if (lsize > 0) {
+            this.currId = lsize;
+        }
+
+        jListExperiment.setModel(this.m);
+    }
+
     public void createExperiment() {
-        if(makeExperimenteValidation()){
-           String name = this.JTExperiment.getText();
-           float vol = Float.parseFloat(this.jTextFieldV0.getText());
-           float acid = Float.parseFloat(this.jTMMAcid.getText());
-           float ph = Float.parseFloat(this.jTPhCor.getText());
-           float nofb = Float.parseFloat(this.jTNOFB.getText());
+        if (makeExperimenteValidation()) {
+            String name = this.JTExperiment.getText();
+            float vol = Float.parseFloat(this.jTextFieldV0.getText());
+            float acid = Float.parseFloat(this.jTMMAcid.getText());
+            float ph = Float.parseFloat(this.jTPhCor.getText());
+            float nofb = Float.parseFloat(this.jTNOFB.getText());
 
-           Experiment ex = new Experiment(this.currId, name, new Date());
-           ex.setInitialVolume(vol);
-           ex.setPhCorrection(ph);
-           ex.setBaseConcentration(nofb);
-           ex.setStrongAcidQuantity(acid);
-           System.out.println(name);
+            Experiment ex = new Experiment(this.currId, name, new Date());
+            ex.setInitialVolume(vol);
+            ex.setPhCorrection(ph);
+            ex.setBaseConcentration(nofb);
+            ex.setStrongAcidQuantity(acid);
+            System.out.println(name);
 
-           m.addElement(name+" - "+this.currId);
+            m.addElement(name + " - " + this.currId);
 
-           this.currId++;
-           this.jListExperiment.setModel(m);
+            this.currId++;
+            this.jListExperiment.setModel(m);
 
-           this.experiment = ex;   
-           Experiment.listOfExperiments.add(ex);
+            this.experiment = ex;
+            Experiment.listOfExperiments.add(ex);
         }
     }
-    
+
     public void cleanDisplay() {
         this.JTExperiment.setText("");
         this.jTMMAcid.setText("");
@@ -188,8 +176,8 @@ public class ControllerExperiment {
         this.jTextFieldV0.setText("");
         this.jTNOFB.setText("");
     }
-    
-    public void loadDataFromList(){
+
+    public void loadDataFromList() {
         int item = this.jListExperiment.getSelectedIndex();
         var selectedExperiment = Experiment.listOfExperiments.get(item);
         this.JTExperiment.setText(selectedExperiment.getName());
@@ -197,25 +185,26 @@ public class ControllerExperiment {
         this.jTPhCor.setText(Float.toString(selectedExperiment.getPhCorrection()));
         this.jTextFieldV0.setText(Float.toString(selectedExperiment.getInitialVolume()));
         this.jTNOFB.setText(Float.toString(selectedExperiment.getBaseConcentration()));
-        
+
     }
-    public void updateList(JList list, ArrayList data){
+
+    public void updateList(JList list, ArrayList data) {
         DefaultListModel model = new DefaultListModel();
-        for (var itr : data){
-           String item =  itr.toString();
-           model.addElement(item);
+        for (var itr : data) {
+            String item = itr.toString();
+            model.addElement(item);
         }
         //this.m = model;
         list.setModel(model);
     }
-    
-    public void deleteExperiment(){
+
+    public void deleteExperiment() {
         int item = this.jListExperiment.getSelectedIndex();
-        if(item>-1){
+        if (item > -1) {
             m.remove(item);
-        
+
             cleanDisplay();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "É impossível deletar um objeto sem selecioná-lo antes, anta véia!");
         }
     }

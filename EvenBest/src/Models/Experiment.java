@@ -81,6 +81,10 @@ public class Experiment {
     public void setDate(Date date) {
         this.date = date;
     }
+    
+    public int getId() {
+        return id;
+    }
 
     public float getInitialVolume() {
         return initialVolume;

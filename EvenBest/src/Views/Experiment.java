@@ -5,7 +5,10 @@
 package Views;
 
 import Controllers.ControllerExperiment;
-import Controllers.Global;
+import static Controllers.ControllerExperiment.jListExperiment;
+import Controllers.ControllerMain;
+import java.awt.Dimension;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,9 +19,12 @@ public class Experiment extends javax.swing.JFrame {
     /**
      * Creates new form Experiment
      */
+    ControllerMain mainc;
+
     public Experiment() {
         initComponents();
-        inicio();
+        mainc = new ControllerMain(this.jDesktopPane1);
+        mainc.renderExperiments();
     }
 
     /**
@@ -31,20 +37,6 @@ public class Experiment extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
-        jTExperimentName = new javax.swing.JTextField();
-        jTextFieldMMACID = new javax.swing.JTextField();
-        jTextFieldPHCOR = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextFieldV0 = new javax.swing.JTextField();
-        jTextFieldNB = new javax.swing.JTextField();
-        jButtonSaveExp = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListExperiment = new javax.swing.JList<>();
-        jButtonDeleteExp = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -55,118 +47,23 @@ public class Experiment extends javax.swing.JFrame {
 
         jDesktopPane1.setBackground(new java.awt.Color(204, 255, 204));
 
-        jLabel1.setText("Experiment name:");
-
-        jLabel5.setText("Initial Volume of Solution:");
-
-        jLabel6.setText("Normality of strong base");
-
-        jLabel7.setText("Excess acid present");
-
-        jLabel8.setText("Added value to calculated p[H]");
-
-        jTextFieldV0.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldV0ActionPerformed(evt);
-            }
-        });
-
-        jButtonSaveExp.setText("Save Experiment");
-        jButtonSaveExp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSaveExpActionPerformed(evt);
-            }
-        });
-
-        jListExperiment.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jListExperiment.setToolTipText("");
-        jScrollPane1.setViewportView(jListExperiment);
-
-        jButtonDeleteExp.setText("Delete Experiment");
-        jButtonDeleteExp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDeleteExpActionPerformed(evt);
-            }
-        });
-
-        jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTExperimentName, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextFieldMMACID, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextFieldPHCOR, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextFieldV0, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextFieldNB, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButtonSaveExp, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButtonDeleteExp, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jButtonSaveExp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonDeleteExp))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldNB, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18))
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldV0, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7)
-                                .addGap(42, 42, 42)))
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldPHCOR, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                            .addComponent(jTextFieldMMACID)))
-                    .addComponent(jLabel1)
-                    .addComponent(jTExperimentName, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(90, Short.MAX_VALUE))
+            .addGap(0, 1028, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTExperimentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextFieldV0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextFieldMMACID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextFieldNB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextFieldPHCOR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSaveExp)
-                    .addComponent(jButtonDeleteExp))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+            .addGap(0, 474, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Result");
+        jMenu1.setText("Experiments");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Data");
@@ -201,26 +98,17 @@ public class Experiment extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldV0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldV0ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldV0ActionPerformed
-
-    private void jButtonSaveExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveExpActionPerformed
-        controlador.createExperiment();
-    }//GEN-LAST:event_jButtonSaveExpActionPerformed
-
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-       
+
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        System.out.println("chegou aqui");
-        controlador.GoToDataScreen();
+       mainc.renderDataWithTest();
     }//GEN-LAST:event_jMenu2MouseClicked
 
-    private void jButtonDeleteExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteExpActionPerformed
-        controlador.deleteExperiment();
-    }//GEN-LAST:event_jButtonDeleteExpActionPerformed
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+       mainc.renderExperiments();
+    }//GEN-LAST:event_jMenu1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -258,32 +146,11 @@ public class Experiment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonDeleteExp;
-    private javax.swing.JButton jButtonSaveExp;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JList<String> jListExperiment;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTExperimentName;
-    private javax.swing.JTextField jTextFieldMMACID;
-    private javax.swing.JTextField jTextFieldNB;
-    private javax.swing.JTextField jTextFieldPHCOR;
-    private javax.swing.JTextField jTextFieldV0;
     // End of variables declaration//GEN-END:variables
-   ControllerExperiment controlador;
-   
-   void inicio(){
-       Global.desktopPane = this.jDesktopPane1;
-       controlador = new ControllerExperiment(jTExperimentName, jTextFieldV0, jTextFieldMMACID, jTextFieldPHCOR, jTextFieldNB, jListExperiment, jDesktopPane1 );
-   }
-   
-   
+
 }
