@@ -43,6 +43,8 @@ public class ControllerDataExperiment {
     JTextField jTPH;
     JTextField jTRCC;
     JTextField jTVB;
+    int selectedExp;
+    
     public ControllerDataExperiment(Experiment experiment, JButton JBListLog, JButton JBSaaveComponent, JButton JButton1, JButton JButton2, JList<String> jListComponent, JList<String> jListSpecies, JList<String> jListPoints, JTextField jTComponentName, JTextField jTIS, JTextField jTLBETA, JTextField jTMMC, JTextField jTPH, JTextField jTRCC, JTextField jTVB) {
         this.experiment = experiment;
         this.JBListLog = JBListLog;

@@ -5,7 +5,6 @@
 package Views;
 
 import Controllers.ControllerDataExperiment;
-import Controllers.ControllerMain;
 
 /**
  *
@@ -23,7 +22,17 @@ public class ExperimentData extends javax.swing.JPanel {
     public ExperimentData(Models.Experiment experiment) {
         initComponents();
         this.experiment = experiment;
+        
         init();
+        if (!experiment.getComponents().isEmpty()) {
+            controller.updateList(jListComponent, experiment.getComponents());
+        }
+        if (!experiment.getPoints().isEmpty()) {
+            controller.updateList(jListPoints, experiment.getPoints());
+        }
+         if (!experiment.getSpecies().isEmpty()) {
+            controller.updateList(jListSpecies, experiment.getSpecies());
+        }
     }
 
     /**
